@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Starters Menu</title>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: url("vegbg.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+      }
+
+      /* Header */
+
+      h2 {
+        text-align: center;
+        padding: 20px;
+        background: linear-gradient(to right, #ff512f, #dd2476);
+        color: white;
+        margin: 0;
+      }
+
+      .cart-link {
+        text-align: center;
+        display: block;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        color: yellow;
+      }
+
+      /* Container */
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+        padding: 30px;
+      }
+
+      /* Card */
+
+      .card {
+        background: white;
+        width: 220px;
+        padding: 15px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card img {
+        width: 100%;
+        height: 140px;
+        border-radius: 10px;
+      }
+
+      .price {
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      /* Quantity */
+
+      .qty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 8px 0;
+      }
+
+      .qty button {
+        padding: 4px 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .count {
+        font-weight: bold;
+      }
+
+      /* Add button */
+
+      .addbtn {
+        background: green;
+        color: white;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .addbtn:hover {
+        background: darkgreen;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>🍗 List of Starters</h2>
+
+    <a class="cart-link" href="cart.html">🛒 View Cart</a>
+
+    <div class="container"></div>
+
+    <script>
+      const items = [
+        { name: "Chicken Tikka", price: 290, img: "Pepper Chicken Dryy.jpg" },
+        { name: "Chicken 65", price: 160, img: "Chicken 65.jpg" },
+        { name: "Tandoori Chicken", price: 330, img: "Tandoori Chicken.webp" },
+        { name: "Chicken Lollipop", price: 300, img: "Chicken Lollipop.jpg" },
+        {
+          name: "Mutton Seekh Kebab",
+          price: 430,
+          img: "Mutton Seekh Kebab.webp",
+        },
+        { name: "Fish Fingers", price: 280, img: "Fish Fingers.jpg" },
+        { name: "Prawn Tempura", price: 355, img: "Prawn Tempura.png" },
+        { name: "Chilli Chicken", price: 280, img: "Chilli Chicken.jpg" },
+        { name: "Egg Devil", price: 210, img: "Egg Devil.jpg" },
+        {
+          name: "Pepper Chicken Dry",
+          price: 200,
+          img: "Pepperrr Chicken Dry.webp",
+        },
+      ];
+
+      let container = document.querySelector(".container");
+
+      items.forEach((item) => {
+        container.innerHTML += `
+
+<div class="card">
+
+<img src="${item.img}">
+
+<h4>${item.name}</h4>
+
+<div class="price">₹${item.price}</div>
+
+<div class="qty">
+
+<button onclick="decrease(this)">-</button>
+
+<span class="count">0</span>
+
+<button onclick="increase(this)">+</button>
+
+</div>
+
+<button class="addbtn"
+onclick="addToCart('${item.name}',${item.price},this)">
+ADD
+</button>
+
+</div>
+
+`;
+      });
+
+      function increase(btn) {
+        let count = btn.parentElement.querySelector(".count");
+
+        count.innerText = parseInt(count.innerText) + 1;
+      }
+
+      function decrease(btn) {
+        let count = btn.parentElement.querySelector(".count");
+
+        if (parseInt(count.innerText) > 1) {
+          count.innerText = parseInt(count.innerText) - 1;
+        }
+      }
+
+      function addToCart(name, price, btn) {
+        let quantity = parseInt(
+          btn.parentElement.querySelector(".count").innerText,
+        );
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        let existing = cart.find((item) => item.name === name);
+
+        if (existing) {
+          existing.quantity += quantity;
+        } else {
+          cart.push({ name, price, quantity });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        alert("Item added to cart!");
+      }
+    </script>
+  </body>
+</html>

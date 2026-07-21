@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment using Grid</title>
+    <style>
+        .outer{
+            background-color: black;
+            display: grid;
+            grid-template-columns: repeat(2,auto);
+            width: 500px;
+            
+            
+        }
+        .inner1{
+            background-color: chartreuse;
+            border: 2px solid black;
+        }
+        .inner2{
+            background-color: aqua;
+            grid-row-start: 2;
+            grid-row-end: 3;
+             border: 2px solid black;
+        }
+        .inner3{
+            background-color: blue;
+            grid-row-start:3 ;
+            grid-row-end: 4;
+             border: 2px solid black;
+
+        }
+        .inner4{
+            background-color: bisque;
+            grid-row-start: 4;
+            grid-row-end: 5;
+             border: 2px solid black;
+        }
+        .inner5{
+            background-color: brown;
+            border: 2px solid black;
+            grid-row-start: 5;
+            grid-row-end: 6;
+             
+        }
+        .inner6{
+            background-color: chocolate;
+            border: 2px solid black;
+        }
+        .inner7{
+            background-color: coral;
+             border: 2px solid black;
+        }
+        .inner8{
+            background-color: darkgoldenrod;
+             border: 2px solid black;
+        }
+        .inner9{
+            background-color: darkcyan;
+             border: 2px solid black;
+        }
+        .inner10{
+            background-color: deeppink;
+             border: 2px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="outer">
+        <div class="inner1">1</div>
+        <div class="inner2">2</div>
+        <div class="inner3">3</div>
+        <div class="inner4">4</div>
+        <div class="inner5">5</div>
+        <div class="inner6">6</div>
+        <div class="inner7">7</div>
+        <div class="inner8">8</div>
+        <div class="inner9">9</div>
+        <div class="inner10">10</div>
+    </div>
+    
+</body>
+</html>

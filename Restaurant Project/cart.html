@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Your Cart</title>
+    <style>
+      body {
+        font-family: Arial;
+        margin: 0;
+        background: #f4f4f4;
+      }
+
+      h2 {
+        text-align: center;
+        background: #333;
+        color: white;
+        padding: 15px;
+        margin: 0;
+      }
+
+      .container {
+        width: 80%;
+        margin: 30px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th {
+        background: #444;
+        color: white;
+        padding: 10px;
+      }
+
+      td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .remove {
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .total-box {
+        text-align: right;
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .checkout {
+        background: green;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        float: right;
+        margin-top: 15px;
+      }
+
+      .back {
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+      }
+
+      .empty {
+        text-align: center;
+        font-size: 20px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>🛒 Your Cart</h2>
+
+    <div class="container">
+      <table id="cartTable">
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </table>
+
+      <div class="total-box" id="grandTotal"></div>
+      <button class="checkout">Proceed to Checkout</button>
+      <br />
+      <a class="back" href="Restaurants.html">⬅ Back to Menu</a>
+    </div>
+
+    <script>
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let table = document.getElementById("cartTable");
+      let grandTotal = 0;
+
+      if (cart.length === 0) {
+        table.style.display = "none";
+        document.getElementById("grandTotal").innerHTML =
+          "<div class='empty'>Your Cart is Empty 😔</div>";
+      } else {
+        cart.forEach((item, index) => {
+          let row = table.insertRow();
+
+          let total = item.price * item.quantity;
+          grandTotal += total;
+
+          row.innerHTML = `
+            <td>${item.name}</td>
+            <td>₹${item.price}</td>
+            <td>${item.quantity}</td>
+            <td>₹${total}</td>
+            <td><button class="remove" onclick="removeItem(${index})">Remove</button></td>
+        `;
+        });
+
+        document.getElementById("grandTotal").innerText =
+          "Grand Total: ₹" + grandTotal;
+      }
+
+      function removeItem(index) {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        location.reload();
+      }
+    </script>
+  </body>
+</html>

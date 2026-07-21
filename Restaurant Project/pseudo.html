@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo</title>
+    <style>
+        a:link{
+            background-color: aqua;
+            color: black;
+            border: 2px solid red;
+            text-decoration: dotted;
+        }
+        a:hover{
+            background-color: rgb(21, 226, 65);
+            color: black;
+            border: 4px solid yellow;
+
+        }
+        input:focus
+        {
+            border: 2px dotted rgb(59, 23, 219);
+            background-color: rgb(184, 98, 98);
+
+        }
+        input:not([type="email"]){
+            border-color: chartreuse;
+        }
+        input:invalid
+        {
+            background-color: aqua;
+            border:2px dotted red;
+
+        }
+        input:valid{
+            border: 2px dotted green;
+            background-color: bisque;
+        }
+        li:First-child{
+            background-color: coral;
+        }
+        li:last-child{
+            color: blue;
+        }
+        li:nth-child(2){
+            background-color: darkmagenta;
+        }
+
+
+    </style>
+</head>
+<body>
+    <a href="veg.avif">click here</a><br><br>
+  <input type="email">
+  <br><br>
+  <input type="text">
+  <br><br>
+  <input type="number" min="18" max="100">
+  <br>
+  <ol>
+    <li>First child</li>
+    <li>Secound child</li>
+    <li>Third child</li>
+  </ol>
+   
+    
+</body>
+</html>
